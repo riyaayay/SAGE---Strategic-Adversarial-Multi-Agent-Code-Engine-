@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build Wheel
+      run: python3 -m pip install build && python3 -m build
+      
+    - name: Build and Push Docker
+      run: |
+        docker build -t sage-pro:${{ github.ref_name }} -f Dockerfile.rocm .
+        # docker push ...
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/*.whl
+          dist/*.tar.gz
+        generate_release_notes: true

@@ -1,0 +1,23 @@
+# Tool Configuration for Grounding Oracle
+ruff:
+  select: ["ALL"]
+  ignore: ["D203", "D213", "COM812"]
+  line_length: 100
+
+mypy:
+  strict: true
+  ignore_missing_imports: true
+
+bandit:
+  confidence_floor: "MEDIUM"
+  severity_floor: "MEDIUM"
+
+semgrep:
+  rulesets:
+    - "p/python"
+    - "p/security-audit"
+
+sandbox:
+  timeout: 30
+  memory_limit_gb: 1.0
+  network_access: false

@@ -1,0 +1,54 @@
+# Torsion Penalty Map
+# Maps each axis label to a dict of (token_id: penalty)
+# Token IDs are approximate GPT-2/Llama vocab entries for the concept.
+# Penalties in range [-5.0, -1.0] — negative = discourage token.
+
+oop_vs_functional:
+  3929: -3.0   # "lambda"
+  8899: -2.5   # "map"
+  3001: -2.5   # "filter"
+  7532: -2.0   # "reduce"
+  1441: -1.5   # "yield"
+  11451: -1.5  # "comprehension" fragment
+
+iteration_vs_recursion:
+  7: -2.0      # "return" (recursive returns)
+  2134: -3.5   # "recur"
+  1109: -2.0   # "self" (self-calls)
+  13966: -3.0  # "recursive"
+  5765: -1.5   # "stack" (call stack)
+
+async_vs_sync:
+  9012: -4.0   # "async"
+  25507: -4.0  # "await"
+  812: -2.0    # "coroutine" fragment
+  7560: -2.5   # "asyncio"
+  1441: -2.0   # "yield" (async generators)
+
+generic_vs_specialized:
+  4906: -2.0   # "int"
+  5765: -2.0   # "str"
+  9526: -2.0   # "float"
+  2340: -1.5   # "list"
+  15988: -2.5  # "concrete"
+
+performance_vs_readability:
+  3670: -2.0   # "comment" fragment
+  2474: -1.5   # "doc"
+  764: -1.0    # "name"
+  10618: -2.5  # "readable"
+  4686: -1.5   # "verbose"
+
+memory_vs_cpu:
+  30073: -3.0  # "cache"
+  2340: -2.0   # "list"
+  8633: -2.0   # "dict"
+  17990: -2.5  # "buffer"
+  22506: -2.0  # "alloc"
+
+defensive_vs_optimistic:
+  1949: -3.0   # "pass" (bare except:pass)
+  18224: -2.5  # "ignore"
+  4329: -2.0   # "skip"
+  13047: -1.5  # "assume"
+  28552: -2.0  # "trust"

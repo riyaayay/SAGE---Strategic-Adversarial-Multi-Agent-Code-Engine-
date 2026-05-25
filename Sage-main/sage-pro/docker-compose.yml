@@ -1,0 +1,61 @@
+services:
+  # ── Backend: FastAPI AODE Engine on port 8000 ──────────────────────────
+  sage-pro:
+    build:
+      context: .
+      dockerfile: Dockerfile.rocm
+    image: sage-pro:latest
+    container_name: sage-pro
+    shm_size: '16gb'
+    devices:
+      - "/dev/kfd:/dev/kfd"
+      - "/dev/dri:/dev/dri"
+    group_add:
+      - video
+      - render
+    environment:
+      - PYTHONPATH=/usr/local/lib/python3.10/site-packages:/app
+    volumes:
+      - ./.env:/app/.env
+      - ./models:/app/models
+      - ./demo_output:/app/demo_output
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+      - "8001-8005:8001-8005"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Frontend: Gradio Dashboard on port 7860 ────────────────────────────
+  #    On the AMD droplet, the backend is on the same Docker network,
+  #    so SAGE_BACKEND_URL points at the service name "sage-pro".
+  sage-ui:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    image: sage-ui:latest
+    container_name: sage-ui
+    depends_on:
+      sage-pro:
+        condition: service_healthy
+    environment:
+      - SAGE_MODE=pro
+      - SAGE_API_URL=http://sage-pro:8000
+      - SAGE_ENABLE_STREAMING=true
+      - SAGE_ENABLE_XAI=true
+      - SAGE_MAX_CYCLES=4
+    ports:
+      - "7860:7860"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+

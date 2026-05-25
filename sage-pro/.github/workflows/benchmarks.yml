@@ -1,0 +1,22 @@
+name: Nightly Benchmarks
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Nightly at 6 AM
+  workflow_dispatch:
+
+jobs:
+  bench:
+    runs-on: [self-hosted, mi300x]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run SAGE-PRO Benchmarks
+      run: make bench
+      
+    - name: Upload results
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: benchmarks/results/

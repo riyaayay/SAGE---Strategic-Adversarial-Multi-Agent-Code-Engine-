@@ -1,0 +1,22 @@
+[project]
+name = "sage-aode"
+version = "0.1.0"
+description = "Strategic Adversarial Generative Engine on AMD MI300X"
+authors = [{ name = "SAGE Team" }]
+dependencies = [
+    "vllm==0.6.0",
+    "torch==2.4.0",
+    "langgraph==0.2.14",
+    "fastapi==0.112.0",
+    "gradio==4.40.0",
+    "gudhi==3.10.1",
+    "faiss-cpu==1.8.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["sage/tests"]

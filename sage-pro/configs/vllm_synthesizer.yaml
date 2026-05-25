@@ -1,0 +1,8 @@
+model: "MaziyarPanahi/Mistral-Large-Instruct-2407-AWQ"
+quantization: "awq_marlin"
+gpu_memory_utilization: 0.38
+max_model_len: 32768
+enforce_eager: true
+port: 8003
+host: "0.0.0.0"
+tensor_parallel_size: 1

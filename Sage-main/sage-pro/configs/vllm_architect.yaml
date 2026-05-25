@@ -1,0 +1,9 @@
+model: "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ"
+quantization: "awq_marlin"
+dtype: "float16"
+gpu_memory_utilization: 0.11
+max_model_len: 16384
+enforce_eager: true
+port: 8001
+tensor_parallel_size: 1
+host: "0.0.0.0"

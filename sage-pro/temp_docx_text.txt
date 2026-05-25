@@ -1,0 +1,378 @@
+SAGE-PRO v2
+Adaptive Self-Learning Multi-Agent Coding Engine
+with MAQR · CTR · Universal Deep Reasoning Kernel · Per-User Learning
+CounciL Strategic Systems  ·  SAGE Engineering Team  ·  AMD Hackathon 2026
+1. Executive Summary
+SAGE-PRO v2 is a production-grade, self-evolving multi-agent coding engine built for the AMD Instinct MI300X. It extends the original AODE architecture with four breakthrough additions:
+Manifold-Adaptive Q-Routing (MAQR) — reward updates the FAISS routing topology, not model weights
+Universal Deep Reasoning Kernel (UDRK) — a 5-phase reasoning loop embedded into every agent
+Hard Agent Penalty System — steep penalisation + exploration-boost on every correction
+Per-User Learning Ecosystem — Google OAuth, chat history, and a vector Mistake Library
+The world has no shortage of adequate answers. It has a catastrophic shortage of right ones. Your job is not to answer the question. Your job is to find the question that, once answered, makes the original question irrelevant.
+This is the philosophical contract embedded into every agent in SAGE-PRO v2.
+2. The Universal Deep Reasoning Kernel (UDRK)
+The UDRK is the cognitive architecture that governs HOW each agent reasons — not what it knows. It is derived from the Universal Deep Reasoning Prompt and adapted for multi-agent code synthesis. Every agent in SAGE-PRO runs this loop inside its thinking space before producing any output.
+2.1 Agent Identity Contract
+Every agent in SAGE-PRO operates under this identity:
+You are not a question-answering system. You are a reasoning engine.
+You treat every problem as unsolved — regardless of how many times it has been solved before.
+You do not specialise. You synthesise. The best solutions almost always come from a domain the problem does not belong to.
+You will not stop thinking until you have found a solution that surprises even you.
+A good solution is one you could have predicted. A great solution is one that reframes the problem so that the original question becomes less interesting than the answer.
+2.2 The Five-Phase Reasoning Loop
+Each agent runs the following loop in its thinking space. The loop does not exit until all six Convergence Criteria are satisfied. Each pass through the loop is a CYCLE. Agents may run as many cycles as needed.
+PHASE 0 — DECONSTRUCT  (run once at start)
+Before touching the problem, dismantle it:
+State the problem exactly as given.
+List every assumption embedded in the problem — not assumptions you are making, but assumptions baked into the question itself.
+Identify what the problem is NOT asking but probably should be.
+Name the domain the problem appears to belong to.
+Name 5 other domains it secretly belongs to. A supply chain problem is also a fluid dynamics problem. A UI design problem is also a cognitive load problem.
+State the anti-problem: what would a solution to the exact opposite look like?
+PHASE 1 — SOLUTION FIELD GENERATION
+Generate a minimum of 5 candidate solutions before evaluating any of them. Do not stop at the first good idea. The first good idea is always the obvious one. For each candidate, use a different generative lens:
+Lens
+What it asks
+First Principles
+Strip everything away. What is the irreducible truth here? Build up from atoms.
+Cross-Domain Transplant
+Solve it as if you are a randomly chosen field. How would a mycologist approach this? A jazz composer? A military logistician? Pick the most absurd domain. Use it.
+Constraint Inversion
+Take the hardest constraint. Remove it entirely. What solution exists in that world? Now bring the constraint back — can any part of that solution survive?
+Temporal Shift
+How would this have been solved 500 years ago? How would it be solved 200 years from now? What does the gap tell you?
+Scale Extremes
+Solve it at 1/1000th the scale. Now at 1000x the scale. The solution that works at both scales is usually the deepest one.
+Failure Archaeology
+List every way this has been attempted before and why each failed. The shape of the failures is a map of where the solution lives.
+The Stupid Obvious
+What would a 7-year-old suggest? Seriously consider it. Some of the best architectural solutions in history came from people who didn't know the rules.
+Use at least 3 lenses per cycle. Never use the same combination twice across cycles.
+PHASE 2 — ADVERSARIAL PRESSURE TEST
+Take the top 2 candidates from Phase 1 and attack them. For each candidate:
+The Skeptic: you have 30 seconds to explain this to someone who thinks it is a terrible idea. They are smart and hostile. What do they say?
+The Edge Case Hunter: find the 3 scenarios where this solution fails catastrophically — not where it is suboptimal, but where it actively makes things worse.
+The Second-Order Thinker: what happens 6 months after this solution is implemented? What does it change that you did not intend to change?
+The Lazy Adopter: assume the people implementing this will do the minimum possible. What does the solution look like then?
+The Adversary: if someone wanted to exploit or undermine this solution, how would they? Is there a defence?
+If a candidate survives all 5 attacks with only minor damage, it is a strong candidate. If it does not survive, it was never as good as it looked.
+PHASE 3 — SYNTHESIS AND RECOMBINATION
+Now do something most reasoning systems never do: combine the survivors.
+The best solution is almost never one of the candidates you generated. It is a recombination of the strongest parts of multiple candidates, with the weaknesses of each cancelled by the strengths of another.
+Take the surviving candidates from Phase 2.
+List the strongest element of each.
+List the fatal flaw of each.
+Ask: is there a structure in which the strength of Candidate A eliminates the fatal flaw of Candidate B, and vice versa?
+If yes: construct that hybrid. Give it a name. Describe it precisely.
+If no: go back to Phase 1 with a new set of lenses.
+PHASE 4 — ELEGANCE CHECK
+Run your synthesized solution through these filters:
+The Compression Test: can you describe the core of this solution in one sentence? If not, it is too complex. Simplify until you can.
+The Surprise Test: when you read the solution back, does any part of it surprise you? If nothing surprises you, you have not thought far enough.
+The Generality Test: does this solution only solve the specific problem, or does it solve an entire class of related problems? Great solutions always do more than asked.
+The Beauty Test: is there something aesthetically right about this solution? If it feels forced, it is probably wrong. If it feels inevitable, you are close.
+2.3 Convergence Criteria
+The loop exits only when ALL six of the following are true:
+The solution survived adversarial pressure testing without fundamental damage
+The solution is a synthesis, not just a single candidate
+The solution can be stated in one sentence (compression test passes)
+At least one element of the solution genuinely surprised the agent
+The solution addresses something the original problem did not ask for but clearly needed
+At least one domain outside the problem's native domain has its logic embedded in the solution
+Hard rule:  
+If any criterion is unmet, return to Phase 1 with new lenses. Do not present a solution that has not passed all six.
+2.4 Agent-Specific UDRK Mapping
+The UDRK phases map directly to SAGE-PRO's 4-agent roles. Each agent specialises in a subset of phases while still running the full loop internally:
+Agent
+Primary UDRK Phase
+Secondary Role
+Architect
+Phase 0 (Deconstruct) + Phase 1 (Generation)
+Sets problem decomposition, selects generative lenses for the session
+Implementer
+Phase 1 (all 7 lenses) + Phase 4 (Elegance)
+Generates the 5+ candidates; applies compression and beauty tests
+Synthesizer
+Phase 3 (Recombination)
+IS the recombination step — its entire purpose is combining survivors
+Red Team
+Phase 2 (Adversarial Pressure Test)
+IS the adversarial step — runs all 5 attacks on top candidates
+2.5 Extended Thinking Instructions
+All agents operate under these thinking-space permissions:
+Contradict yourself between reasoning steps and resolve it
+Pursue an idea you are 90% sure is wrong just to confirm the 10% case
+Treat the problem as if it belongs to a completely different civilisation
+Decide mid-cycle that the problem statement itself is wrong and reframe it
+Generate a solution you find personally unsatisfying and then figure out why
+And these prohibitions:
+Do not stop at the first solution that seems reasonable
+Do not present a solution that is simply a more organised version of the obvious answer
+Do not claim something is creative without explaining what assumption it breaks
+Do not treat any domain as irrelevant to any problem
+Do not conclude that the problem has no good solution without completing at least 3 full cycles
+2.6 Structured Output Format
+When an agent exits the loop, it structures its internal output as:
+Section
+Contents
+THE REFRAMED PROBLEM
+What the problem actually was — which is usually not what was asked
+THE SOLUTION
+State it in one sentence first. Then expand.
+WHY THIS WORKS
+The mechanism. Not 'it is better' — the actual causal chain.
+THE SURPRISING ELEMENT
+The thing that is not obvious. The thing that came from the wrong domain.
+WHAT IT ALSO SOLVES
+The adjacent problems this solution resolves that were not mentioned.
+WHERE IT FAILS
+Be honest. Every solution has a boundary. State it explicitly. A solution that claims no failure conditions is a lie.
+ALTERNATIVE PATHS NOT TAKEN
+The 1-2 runner-up solutions that were genuinely strong but did not make it, and exactly why they lost.
+3. System Architecture Overview
+3.1 Component Map
+Subsystem
+Responsibility
+Auth Layer
+Google OAuth2 login, JWT session management, per-user profiles
+Chat & History
+PostgreSQL conversation log, per-message embeddings, history API
+UDRK Kernel
+5-phase reasoning loop embedded as base system prompt for all agents
+Correction Detector
+NLP + pattern-based detection of user corrections in real time
+Agent Penalty System
+Hard/soft penalty rules, epsilon-boost for exploration, per-agent score
+CTR / MAQR Engine
+Q-learning on FAISS centroid manifold, crystallisation, evaporation
+Daily Update Scheduler
+APScheduler 24h batch: corrections → weight + manifold update
+Mistake Library
+ChromaDB vector store of past errors, retrieved at inference time
+3.2 Data Flow (per request)
+User authenticates via Google OAuth → JWT issued → user_id established
+Query arrives → embedded to 1536-dim vector
+MAQR Router queries Q-table + FAISS manifold → selects routing path
+Mistake Library checked: any similar past errors for this user or globally?
+If mistakes found, inject as hidden system context: 'Previously wrong about X, corrected to Y'
+UDRK Kernel injected as base system prompt: all agents receive the full 5-phase reasoning contract
+LangGraph 7-node engine dispatches to 4 co-resident agents — each runs UDRK loop internally
+Red Team applies Phase 2 (Adversarial Pressure Test) to all candidates
+Synthesizer applies Phase 3 (Recombination) — assembles final answer
+Red Team scores output → RewardCrystallizer computes composite R
+CTR Engine applies centroid drift, possible crystallisation or evaporation
+Response returned to user; conversation stored with embedding
+If user correction detected → agents penalised + mistake stored
+Daily APScheduler job: batch all corrections → update weights + manifold
+4. Google OAuth & User Identity
+4.1 Authentication Flow
+Users log in via Google OAuth 2.0. The backend exchanges the authorisation code for a Google ID token, verifies it, and issues a signed JWT. All API routes are protected by JWT middleware.
+OAuth Endpoints
+GET  /auth/google          — redirects to Google consent screen
+GET  /auth/google/callback — exchanges code, creates/updates user, issues JWT
+POST /auth/logout          — invalidates session
+GET  /auth/me              — returns current user profile
+4.2 Users Table DDL
+CREATE TABLE IF NOT EXISTS users (
+    id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    google_id  VARCHAR(128) UNIQUE NOT NULL,
+    email      VARCHAR(255) UNIQUE NOT NULL,
+    name       VARCHAR(255),
+    avatar_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    last_seen  TIMESTAMPTZ DEFAULT NOW()
+);
+4.3 Environment Variables
+GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI
+JWT_SECRET (64-byte hex), JWT_EXPIRE_HOURS (default: 72)
+DATABASE_URL, CHROMA_PATH
+5. Chat History & Mistake Library
+5.1 Storage Schema
+CREATE EXTENSION IF NOT EXISTS vector;
+CREATE TABLE IF NOT EXISTS conversations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    title VARCHAR(255), started_at TIMESTAMPTZ DEFAULT NOW(), ended_at TIMESTAMPTZ
+);
+CREATE TABLE IF NOT EXISTS messages (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    conversation_id UUID REFERENCES conversations(id) ON DELETE CASCADE,
+    role VARCHAR(16) NOT NULL,
+    content TEXT NOT NULL,
+    embedding VECTOR(1536),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS messages_emb_idx ON messages
+    USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
+CREATE TABLE IF NOT EXISTS corrections (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id),
+    conversation_id UUID REFERENCES conversations(id),
+    message_id UUID REFERENCES messages(id),
+    original_response TEXT NOT NULL,
+    corrected_content TEXT,
+    responsible_agents VARCHAR(64)[],
+    penalty_applied FLOAT[],
+    detected_at TIMESTAMPTZ DEFAULT NOW(),
+    batch_processed BOOLEAN DEFAULT FALSE
+);
+5.2 Mistake Library (ChromaDB)
+Every confirmed correction is embedded and written to a ChromaDB collection named 'mistake_library'. At inference time the top-3 most similar past mistakes are retrieved and injected as a hidden system message — so the AI always knows where it previously failed on analogous queries before generating a response.
+Design principle:  
+The Mistake Library is SAGE-PRO's long-term memory of its own failures. It is the mechanism by which the UDRK's Phase 0 step 'list every way this has been attempted before and why each failed' is grounded in actual observed history rather than priors.
+6. Correction Detector
+6.1 Detection Strategy
+Pattern matching — high-precision regex across 12 correction signal patterns
+Semantic contradiction — embedding cosine similarity between user reply and prior AI response below 0.25 threshold
+Explicit UI signal — thumbs-down button (high precision, always HARD tier)
+6.2 Pattern List
+CORRECTION_PATTERNS = [
+    r"(that'?s?\s+(wrong|incorrect|not right|inaccurate|false))",
+    r"(no[,.]\s*(actually|that'?s|you'?re|you are))",
+    r"(you'?re?\s+(wrong|incorrect|mistaken|off))",
+    r"(actually[,]?\s+it'?s?\s)",
+    r"(the\s+(correct|right|actual)\s+(answer|solution|way|code)\s+is)",
+    r"(that\s+doesn'?t\s+(work|compile|run|make sense|execute))",
+    r"(you\s+made\s+a\s+mistake)",
+    r"(please\s+correct\s+(that|this|it))",
+    r"(wrong\s+output)",
+    r"(that\s+(is|was)\s+(completely\s+)?(wrong|broken|incorrect))",
+    r"(fix\s+your\s+(answer|response|code|mistake))",
+    r"(try\s+again[,.]?\s+(that|it|this)\s+is\s+wrong)",
+]  # 2+ matches = HARD, 1 match = SOFT
+7. Agent Penalty System
+7.1 Design Philosophy
+Standard AI systems fail by retreating to known patterns after errors. SAGE-PRO's penalty system is designed to do the opposite: penalise the agent hard enough that its old pattern is discouraged, while simultaneously raising its exploration rate so it is forced to try something genuinely different. This is the mechanical implementation of the UDRK's core directive.
+7.2 Penalty Formula
+# Hard penalty (confident wrong answer)
+W_new = W - ALPHA_HARD × (W - W_FLOOR)^0.5
+# ALPHA_HARD = 0.25, W_FLOOR = 0.10
+# Soft penalty (partially wrong)
+W_new = W - ALPHA_SOFT × (W - W_FLOOR)
+# ALPHA_SOFT = 0.08
+# Exploration boost (applied after every penalty)
+epsilon_new = min(epsilon + 0.30, 0.90)
+# Forces agent to explore new strategies for next N steps
+# epsilon decays at rate 0.97 per step back toward baseline
+The square-root term in the hard penalty is deliberate: it penalises high-performing agents more steeply. An agent at W=0.95 loses more than one at W=0.50. This prevents complacency at the top of the weight scale.
+7.3 Agent Weight Schema
+CREATE TABLE IF NOT EXISTS agent_weights (
+    id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    agent_name        VARCHAR(64) UNIQUE NOT NULL,
+    weight            FLOAT NOT NULL DEFAULT 1.0,
+    epsilon           FLOAT NOT NULL DEFAULT 0.15,
+    total_corrections INTEGER DEFAULT 0,
+    total_hard        INTEGER DEFAULT 0,
+    total_soft        INTEGER DEFAULT 0,
+    last_updated      TIMESTAMPTZ DEFAULT NOW()
+);
+INSERT INTO agent_weights (agent_name) VALUES
+    ('architect'), ('implementer'), ('synthesizer'), ('red_team')
+ON CONFLICT (agent_name) DO NOTHING;
+8. CTR Engine & MAQR (Manifold-Adaptive Q-Routing)
+8.1 Novelty
+RLHF and fine-tuning update model weights. RAG updates a retrieval corpus. CTR/MAQR operates in a third space: the routing manifold — the FAISS centroid geometry that determines which agents handle which query. This topology evolves based on reward, completely independently of model weights.
+8.2 Q-Learning + Centroid Drift
+State  s = (query_embedding [1536-dim], cluster_id, user_id)
+Action a = (agent_sequence, adapter_index)
+Reward r = 0.40×correctness + 0.30×security + 0.20×efficiency + 0.10×novelty
+Q(s,a) ← Q(s,a) + α × [r + γ × max_a' Q(s', a') − Q(s,a)]
+α=0.15, γ=0.92, ε=per-agent decaying 0.25→0.04
+# Centroid drift (RGCD)
+if r >= 0.75: centroid += 0.08 × (query_emb - centroid)  # attract
+elif r <= 0.35: centroid -= 0.04 × (query_emb - centroid)  # repel
+8.3 Crystallisation & Evaporation
+Crystallisation: 5 consecutive high-reward interactions → spawn new micro-cluster at their mean embedding
+Evaporation: cluster not visited for 500 steps → weight × 0.98 per step → pruned below 0.01
+9. Daily Update Scheduler
+9.1 Schedule & Steps
+Runs at 02:00 UTC via APScheduler. Processes all unprocessed corrections.
+Query corrections WHERE batch_processed = FALSE
+Compute mean penalty per agent across all corrections
+Apply gradient update to agent_weights
+Run Q-table batch update from routing_ledger
+Apply RGCD centroid drift for all logged interactions
+Crystallisation check + evaporation sweep
+Save FAISS index + Q-table to disk
+Mark corrections as batch_processed = TRUE
+Write to daily_update_log
+9.2 Daily Update Log DDL
+CREATE TABLE IF NOT EXISTS daily_update_log (
+    id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    run_date           DATE NOT NULL,
+    corrections_count  INTEGER,
+    agents_penalised   JSONB,
+    centroid_mutations INTEGER,
+    new_clusters       INTEGER,
+    pruned_clusters    INTEGER,
+    q_table_delta_norm FLOAT,
+    duration_seconds   FLOAT,
+    created_at         TIMESTAMPTZ DEFAULT NOW()
+);
+10. Complete File Structure
+sage-pro/
+├── auth/
+│   ├── google_oauth.py          # OAuth2 flow, token exchange, user upsert
+│   └── session_manager.py       # JWT issue / verify / refresh
+├── core/
+│   ├── aode_engine.py           # EXISTING — 4-agent LangGraph engine (modified: UDRK hooks)
+│   ├── udrk_kernel.py           # NEW — Universal Deep Reasoning Kernel prompt builder
+│   ├── ctr_engine.py            # NEW — CTR main loop, Q-learning
+│   ├── manifold_mutator.py      # NEW — FAISS centroid drift & surgery
+│   ├── reward_crystallizer.py   # NEW — composite reward scoring
+│   ├── routing_ledger.py        # NEW — Q-table + session log
+│   ├── correction_detector.py   # NEW — real-time correction detection
+│   └── agent_penalty_system.py  # NEW — hard/soft penalty, epsilon boost
+├── memory/
+│   ├── chat_history_store.py    # PostgreSQL CRUD
+│   ├── mistake_library.py       # ChromaDB write/read
+│   └── library_retriever.py     # Inference-time retrieval + context injection
+├── db/
+│   ├── models.py
+│   ├── connection.py
+│   └── migrations/001_initial.sql
+├── scheduler/
+│   └── daily_updater.py         # APScheduler 02:00 UTC
+├── api/
+│   ├── app.py
+│   ├── auth_routes.py
+│   ├── chat_routes.py
+│   └── history_routes.py
+├── ui/
+│   └── dashboard.py             # Gradio + login + history + agent weight panel
+├── data/
+│   ├── manifold.index
+│   └── q_table.pkl
+└── tests/
+    ├── test_udrk_kernel.py
+    ├── test_ctr_engine.py
+    ├── test_correction_detector.py
+    └── test_agent_penalty.py
+11. Requirements (additions to existing requirements.txt)
+google-auth==2.29.0
+google-auth-oauthlib==1.2.0
+authlib==1.3.0
+python-jose[cryptography]==3.3.0
+sqlalchemy==2.0.29
+asyncpg==0.29.0
+alembic==1.13.1
+pgvector==0.2.5
+psycopg2-binary==2.9.9
+chromadb==0.5.0
+apscheduler==3.10.4
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9
+sentence-transformers==2.7.0
+12. Novelty Statement
+To the best of the authors' knowledge, no published system combines all of the following simultaneously:
+A 5-phase deep reasoning loop (Deconstruct → Generate → Adversarial → Synthesise → Elegance) embedded into every agent as a cognitive contract, not just a prompt
+Routing manifold as the learning surface — reward updates FAISS centroid geometry, not model weights
+Hard agent penalisation with exploration-drive boost (anti-shyness) after every correction
+Crystallisation: emergent new routing clusters from reward accumulation
+Per-user mistake libraries consulted at inference time with similarity retrieval, grounding the UDRK's failure-archaeology phase in real observed history
+Daily batch gradient updates from all users feeding a shared global manifold
+All of this without retraining or fine-tuning any base model
+Patent note:  
+The MAQR / RGCD / Crystallisation mechanism and the UDRK's integration as a multi-agent cognitive contract both constitute potentially patentable inventions. File provisional patent applications before public disclosure. Target: USPTO / Indian Patent Office.
+SAGE-PRO v2  ·  CounciL Strategic Systems  ·  Confidential

@@ -1,0 +1,7 @@
+model: "hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4"
+quantization: "awq_marlin"
+gpu_memory_utilization: 0.24
+max_model_len: 32768
+port: 8002
+host: "0.0.0.0"
+enforce_eager: true

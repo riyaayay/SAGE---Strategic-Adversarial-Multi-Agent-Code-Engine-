@@ -1,0 +1,221 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "web_search",
+      "description": "Search the live web for current documentation, library versions, design systems, error messages, API references, security advisories, or any information that may have changed since training.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Specific, targeted search query. Include version numbers, library names, and exact error messages where relevant."
+          },
+          "intent": {
+            "type": "string",
+            "enum": ["fetch_docs", "verify_api", "check_version", "find_example", "security_check", "design_reference", "error_debug"],
+            "description": "Why you are searching."
+          },
+          "max_results": {
+            "type": "integer",
+            "default": 5,
+            "description": "Number of results to return."
+          }
+        },
+        "required": ["query", "intent"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "browser_fetch",
+      "description": "Fetch the full content of a specific URL — documentation page, GitHub file, design system reference, existing web app, API spec.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Exact URL to fetch. Must be a complete URL including https://."
+          },
+          "extract": {
+            "type": "string",
+            "enum": ["full_text", "code_blocks", "api_endpoints", "css_variables", "component_list", "schema"],
+            "description": "What to extract from the page."
+          },
+          "reason": {
+            "type": "string",
+            "description": "One sentence explaining why this fetch is necessary."
+          }
+        },
+        "required": ["url", "extract", "reason"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_execute",
+      "description": "Execute code in a sandboxed environment to verify logic, test algorithms, validate data transformations, check math, or confirm syntactic correctness.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "enum": ["python", "javascript", "typescript", "bash", "sql"],
+            "description": "Language to execute."
+          },
+          "code": {
+            "type": "string",
+            "description": "The code to execute. Must be self-contained."
+          },
+          "purpose": {
+            "type": "string",
+            "enum": ["verify_logic", "test_algorithm", "validate_math", "check_syntax", "benchmark", "proof_of_concept"],
+            "description": "Why you are executing this code."
+          },
+          "expected_output": {
+            "type": "string",
+            "description": "What output you expect."
+          }
+        },
+        "required": ["language", "code", "purpose"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_read",
+      "description": "Read files from the repository or workspace. NEVER generate code that must integrate with an existing codebase without reading the relevant files first.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "File path relative to the project root. Use glob patterns for multiple files."
+          },
+          "reason": {
+            "type": "string",
+            "description": "What you need from this file before proceeding."
+          },
+          "extract": {
+            "type": "string",
+            "enum": ["full_content", "imports_only", "exports_only", "type_definitions", "api_surface", "config_values"],
+            "description": "What to extract."
+          }
+        },
+        "required": ["path", "reason", "extract"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_write",
+      "description": "Write or overwrite a file in the workspace.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "File path to write to, relative to project root."
+          },
+          "content": {
+            "type": "string",
+            "description": "Full file content to write."
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["create", "overwrite", "append"],
+            "description": "Write mode."
+          }
+        },
+        "required": ["path", "content", "mode"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "repo_scan",
+      "description": "Scan a directory tree to understand project structure.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "root": {
+            "type": "string",
+            "description": "Directory to scan from. Use '.' for project root."
+          },
+          "depth": {
+            "type": "integer",
+            "default": 3,
+            "description": "How many levels deep to scan."
+          },
+          "filter": {
+            "type": "string",
+            "description": "Optional glob pattern to filter results."
+          }
+        },
+        "required": ["root"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_query",
+      "description": "Query the SAGE-PRO Mistake Library for past errors on queries similar to the current one. ALWAYS call this before generating any response.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The current user query or task description."
+          },
+          "top_k": {
+            "type": "integer",
+            "default": 3,
+            "description": "Number of past mistakes to retrieve."
+          },
+          "threshold": {
+            "type": "number",
+            "default": 0.82,
+            "description": "Similarity threshold."
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_store",
+      "description": "Store a correction or learned fact in the SAGE-PRO Mistake Library.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "original_response": {
+            "type": "string",
+            "description": "What was said or generated that was wrong."
+          },
+          "correction": {
+            "type": "string",
+            "description": "The correct information."
+          },
+          "domain": {
+            "type": "string",
+            "description": "What domain or topic this mistake belongs to."
+          },
+          "responsible_agents": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Which agents were responsible."
+          }
+        },
+        "required": ["original_response", "correction", "domain"]
+      }
+    }
+  }
+]

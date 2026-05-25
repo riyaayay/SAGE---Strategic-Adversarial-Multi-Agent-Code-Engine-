@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Models & Data
+models/
+*.safetensors
+*.bin
+*.awq
+*.pt
+*.h5
+
+# Docker
+.dockerignore
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,299 @@
+# AODE Reasoning Hyperparameters
+epsilon: 0.05
+delta: 0.02
+max_cycles: 4
+alpha_divergence_threshold: 0.15
+
+damage_weights:
+  ruff: 0.1
+  mypy: 0.2
+  bandit: 0.5
+  semgrep: 0.4
+  tests: 1.0
+  complexity: 0.05
+
+# Router Config
+embedding_model: "BAAI/bge-small-en-v1.5"
+index_dims: 384
+routing_max_neighbors: 5
+routing_search_cap: 500
+
+# API Server Config
+server_host: "0.0.0.0"
+server_port: 8000
+vllm_hosts:
+  architect: "http://localhost:8001/v1"
+  implementer: "http://localhost:8002/v1"
+  synthesizer: "http://localhost:8003/v1"
+  redteam: "http://localhost:8004/v1"
+
+# API Communication Limits
+api_timeout_sec: 300.0
+api_max_retries: 3
+
+# Agent Configurations
+agents:
+  architect:
+    model_name: "qwen2.5:72b"
+    prompt_path: "sage/prompts/architect.md"
+    temperature: 0.3
+  implementer:
+    model_name: "qwen2.5-coder:32b"
+    prompt_path: "sage/prompts/implementer.md"
+    temperature: 0.1
+  synthesizer:
+    model_name: "codellama:34b"
+    prompt_path: "sage/prompts/synthesizer.md"
+    temperature: 0.0
+  redteam:
+    primary_model: "deepseek-coder-v2:16b"
+    primary_temperature: 0.7
+    secondary_model: "deepseek-r1:32b"
+    secondary_temperature: 0.5
+    prompt_path: "sage/prompts/red_team.md"
+
+# VRAM Estimation
+vram_base_gb: 89.0
+vram_per_cycle_gb: 2.5
+
+# SAGE-PRO v2 Architecture Settings
+
+# Penalty System
+penalty:
+  alpha_hard: 0.25
+  alpha_soft: 0.08
+  w_floor: 0.10
+  epsilon_boost: 0.30
+  epsilon_max: 0.90
+  epsilon_decay: 0.97
+
+# CTR & MAQR Engine
+ctr_maqr:
+  q_learning:
+    alpha: 0.15
+    gamma: 0.92
+    epsilon_start: 0.25
+    epsilon_end: 0.04
+  reward_weights:
+    correctness: 0.40
+    security: 0.30
+    efficiency: 0.20
+    novelty: 0.10
+  centroid_drift:
+    high_reward_threshold: 0.75
+    low_reward_threshold: 0.35
+    attract_rate: 0.08
+    repel_rate: 0.04
+  crystallisation_consecutive_steps: 5
+  evaporation:
+    idle_steps_threshold: 500
+    decay_rate: 0.98
+    prune_threshold: 0.01
+
+# Correction Detection
+correction_patterns:
+  - "(that'?s?\\s+(wrong|incorrect|not right|inaccurate|false))"
+  - "(no[,.]\\s*(actually|that'?s|you'?re|you are))"
+  - "(you'?re?\\s+(wrong|incorrect|mistaken|off))"
+  - "(actually[,]?\\s+it'?s?\\s)"
+  - "(the\\s+(correct|right|actual)\\s+(answer|solution|way|code)\\s+is)"
+  - "(that\\s+doesn'?t\\s+(work|compile|run|make sense|execute))"
+  - "(you\\s+made\\s+a\\s+mistake)"
+  - "(please\\s+correct\\s+(that|this|it))"
+  - "(wrong\\s+output)"
+  - "(that\\s+(is|was)\\s+(completely\\s+)?(wrong|broken|incorrect))"
+  - "(fix\\s+your\\s+(answer|response|code|mistake))"
+  - "(try\\s+again[,.]?\\s+(that|it|this)\\s+is\\s+wrong)"
+
+correction_semantic_threshold: 0.25
+
+# UDRK (Universal Deep Reasoning Kernel)
+udrk:
+  min_candidates: 5
+  min_lenses_per_cycle: 3
+  max_cycles_before_exit: 3
+
+# Mistake Library
+mistake_library:
+  top_k: 3
+  collection_name: mistake_library
+
+# Embedding Dimensions
+message_embedding_dims: 1536
+
+# Scheduler
+daily_update_hour: 2
+daily_update_minute: 0
+
+# Ollama Deployment Config
+ollama:
+  base_url: http://localhost:11434
+  timeout: 120
+  max_tool_rounds: 6
+  models:
+    orchestrator: qwen2.5:72b
+    architect: qwen2.5:72b
+    implementer: qwen2.5-coder:32b
+    synthesizer: codellama:34b
+    red_team: deepseek-r1:32b
+  options:
+    num_ctx: 32768
+    num_gpu: -1
+  env:
+    OLLAMA_GPU_LAYERS: -1
+    OLLAMA_NUM_PARALLEL: 4
+    OLLAMA_MAX_LOADED_MODELS: 4
+    OLLAMA_FLASH_ATTENTION: 1
+    HSA_OVERRIDE_GFX_VERSION: 9.4.2
+
+# Tool Config
+tool_definitions_path: configs/tool_definitions.json
+tool_charters:
+  architect: sage/prompts/architect_charter.md
+  implementer: sage/prompts/implementer_charter.md
+  synthesizer: sage/prompts/synthesizer_charter.md
+  red_team: sage/prompts/red_team_charter.md
+  orchestrator: sage/prompts/orchestrator.md
+
+# Agent Tool Permissions
+agent_tool_permissions:
+  architect:
+    - repo_scan
+    - file_read
+    - browser_fetch
+    - web_search
+    - memory_query
+  implementer:
+    - file_read
+    - web_search
+    - browser_fetch
+    - code_execute
+    - memory_query
+  synthesizer:
+    - memory_query
+    - file_read
+    - code_execute
+  red_team:
+    - web_search
+    - code_execute
+    - browser_fetch
+    - memory_query
+
+# Sandbox Config
+sandbox:
+  mem_limit: 256m
+  cpu_period: 100000
+  cpu_quota: 50000
+  timeout: 15
+  network: false
+  images:
+    python: python:3.12-slim
+    javascript: node:20-slim
+    bash: bash:5
+
+# ══════════════════════════════════════════════════
+# NOVEL SYSTEMS CONFIG
+# ══════════════════════════════════════════════════
+
+# Novel System 1: Dynamic Agent Spawner
+agent_spawner:
+  void_q_threshold: -0.15
+  spawn_threshold: 0.60
+  consecutive_checks: 3
+  max_spawned_agents: 8
+  base_agents:
+    - architect
+    - implementer
+    - synthesizer
+    - red_team
+
+# Novel System 2: Execution Trace Embeddings
+execution_trace:
+  ast_embedding_dims: 128
+  trace_embedding_dims: 64
+  state_embedding_dims: 64
+  combined_dims: 256
+  hash_depth: 6
+
+# Novel System 3: Adversarial Latent Perturbation
+adversarial_perturbation:
+  alpha: 0.3
+  num_perturbations: 3
+  penalty_threshold: -0.2
+  noise_stddev: 0.05
+
+# Novel System 4: AST Diff Reward Crystallizer
+ast_reward:
+  w_levenshtein: 0.25
+  w_node_ratio: 0.25
+  w_type_change: 0.20
+  w_signature_stability: 0.15
+  w_control_flow: 0.15
+
+# Novel System 5: Skill-Conditioned Self-Distillation
+skill_distillation:
+  reward_threshold: 0.85
+  collection_name: golden_skills
+  top_k: 2
+
+# Novel System 6: Topological Self-Play (Chaos Auto-Curriculum)
+chaos_curriculum:
+  enabled: true
+  max_daily_games: 5
+  target_q_threshold: 0.6
+
+# ══════════════════════════════════════════════════
+# SAGE-PRO v3.0 FEATURE CONFIGURATIONS
+# ══════════════════════════════════════════════════
+
+# Feature 1: Live Glass Renderer
+live_renderer:
+  sandbox_timeout_sec: 10
+  max_preview_cache: 50
+  allowed_runtimes:
+    - html
+    - python_pyodide
+    - react_esm
+    - javascript
+  pyodide_cdn: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/"
+  react_esm_cdn: "https://esm.sh"
+
+# Feature 2: Vision Debugger
+vision_debugger:
+  vlm_model: "llava:34b"
+  max_image_size_bytes: 10485760  # 10 MB
+  analysis_temperature: 0.2
+  analysis_max_tokens: 4096
+
+# Feature 3: Time-Travel Engine
+time_travel:
+  max_checkpoints_per_thread: 200
+  max_branches: 50
+  state_snapshot_max_kb: 512
+  auto_checkpoint: true
+
+# Feature 4: LSP Bridge
+lsp_bridge:
+  backend: "jedi"
+  max_scan_depth: 5
+  excluded_dirs:
+    - __pycache__
+    - .git
+    - node_modules
+    - venv
+    - .venv
+  diagnostics_engines:
+    - jedi
+    - ruff
+
+# Feature 5: Chaos Dreamer
+chaos_dreamer:
+  max_dreams_per_cycle: 3
+  cooldown_seconds: 300
+  difficulty_weights:
+    easy: 0.2
+    medium: 0.5
+    hard: 0.3
+  reward_threshold: 0.6
+  auto_start: false
+
