@@ -4,9 +4,6 @@ title: SAGE — Strategic Adversarial Generative Engine
 
 # SAGE: Strategic Adversarial Generative Engine
 
-[![Hackathon: Winning](https://img.shields.io/badge/Hackathon-Winning-brightgreen)](https://github.com/realruneett/Sage)
-[![Target: AMD MI300X](https://img.shields.io/badge/Hardware-AMD%20MI300X-blue)](https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html)
-
 SAGE is a production-grade, multi-agent coding engine that leverages **Adversarial Orthogonal Divergence (AODE)** to produce code that is not just "correct," but adversarially-hardened. Designed specifically to exploit the massive **192 GB HBM3** capacity of the AMD Instinct MI300X, SAGE features dynamic tier-based model routing to balance latency and reasoning depth.
 
 ---
